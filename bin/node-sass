@@ -348,7 +348,7 @@ function renderFile(file, options, emitter) {
  * @api private
  */
 function renderDir(options, emitter) {
-  var globPath = path.resolve(options.directory, globPattern(options)).replace("[","[[]");
+  var globPath = path.resolve(options.directory, globPattern(options)).replace(/\[/g,"[[]");
   glob(globPath, { ignore: '**/_*', follow: options.follow }, function(err, files) {
     if (err) {
       return emitter.emit('error', util.format('You do not have permission to access this path: %s.', err.path));
